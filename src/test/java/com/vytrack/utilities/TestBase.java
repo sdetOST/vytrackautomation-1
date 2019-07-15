@@ -42,22 +42,18 @@ public abstract class TestBase {  //abstract because we dont want instance from 
 
     @BeforeMethod
     public void setUpMethod(){
-        driver=new ChromeDriver();
+        driver=Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         softAssert=new SoftAssert();
         actions=new Actions(driver);
     }
     @AfterMethod
     public void tearDownMethod(){
-
+        Driver.closeDriver();
         softAssert.assertAll();
 
     }
-    @AfterClass
-    public void tearDownClass(){
-        driver.quit();
 
-    }
 
 
 }

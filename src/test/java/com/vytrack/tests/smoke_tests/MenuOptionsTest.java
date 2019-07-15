@@ -3,6 +3,8 @@ package com.vytrack.tests.smoke_tests;
 import com.vytrack.utilities.SeleniumUtils;
 import com.vytrack.utilities.TestBase;
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -15,12 +17,12 @@ public class MenuOptionsTest extends TestBase {
 //        1. Login	to	Vytrack	as	a	driver
 
         driver.get("http://qa2.vytrack.com/user/login");
-        SeleniumUtils.waitPlease(2);
+        //SeleniumUtils.waitPlease(2);
 
         driver.findElement(By.id("prependedInput")).sendKeys("user165");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.id("_submit")).click();
-       SeleniumUtils.waitPlease(3);
+       //SeleniumUtils.waitPlease(3);
 
 
 
@@ -30,9 +32,12 @@ public class MenuOptionsTest extends TestBase {
 //        System,	page	name	Cars
 
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[1]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        WebDriverWait wait=new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[1]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[1]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle="Car - Entities - System - Car - Entities - System";
         String actualTitle=driver.getTitle();
@@ -47,9 +52,12 @@ public class MenuOptionsTest extends TestBase {
 //        3. Navigate	to	Customers	à Accounts,	verify	page	title	Accounts	- Customers,	verify	page
 //        name	Accounts
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+       // SeleniumUtils.waitPlease(5);
+        //WebDriverWait wait=new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle2="Accounts - Customers";
         String actualTitle2=driver.getTitle();
@@ -65,9 +73,11 @@ public class MenuOptionsTest extends TestBase {
 //        name	Contacts
 
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[4]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[4]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle3="Contacts - Customers";
         String actualTitle3=driver.getTitle();
@@ -81,9 +91,11 @@ public class MenuOptionsTest extends TestBase {
 //        5. Navigate	to	Activities	à Calendar	Events,	verify	page	title	Calendar	Events	- Activities,	page
 //        name	Calendar	Events
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle4="Calendar Events - Activities";
         String actualTitle4=driver.getTitle();
@@ -104,18 +116,22 @@ public class MenuOptionsTest extends TestBase {
 
 
         driver.get("http://qa2.vytrack.com/user/login");
-        SeleniumUtils.waitPlease(2);
+        //SeleniumUtils.waitPlease(2);
 
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager98");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.id("_submit")).click();
-        SeleniumUtils.waitPlease(3);
+        //SeleniumUtils.waitPlease(3);
 //2. Navigate	to	Dashboards	à Dashboard,	verify	page	title	Dashboard	- Dashboards,	verify
 //    page	name	Dashboard
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[1]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+
+        WebDriverWait wait=new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[1]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[1]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle5="Dashboard - Dashboards";
         String actualTitle5=driver.getTitle();
@@ -131,9 +147,11 @@ public class MenuOptionsTest extends TestBase {
 //3. Navigate	to	Fleet	à Vehicles,	verify	page	title	Car	- Entities	- System	- Car	- Entities	–
 //    System,	page	name	Cars
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[2]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle="All - Car - Entities - System - Car - Entities - System";
         String actualTitle=driver.getTitle();
@@ -148,9 +166,11 @@ public class MenuOptionsTest extends TestBase {
 //    name	Accounts
 
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle2="All - Accounts - Customers";
         String actualTitle2=driver.getTitle();
@@ -163,9 +183,11 @@ public class MenuOptionsTest extends TestBase {
 //5. Navigate	to	Customers	à Contacts,	verify	page	title	Accounts	- Customers,	verify	page
 //    name	Contacts
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[4]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[3]/div/div/ul/li[4]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle3="All - Contacts - Customers";
         String actualTitle3=driver.getTitle();
@@ -179,9 +201,12 @@ public class MenuOptionsTest extends TestBase {
 //6. Navigate	to	Sales	à Opportunities,	verify	page	title	Open	Opportunities	- Opportunities	-
 //    Sales,	verify	page	name	Open	Opportunities
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[4]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[4]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[4]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle4="Open Opportunities - Opportunities - Sales";
         String actualTitle4=driver.getTitle();
@@ -197,9 +222,11 @@ public class MenuOptionsTest extends TestBase {
 //            Calls
 
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[5]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[5]/div/div/ul/li[3]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[5]/div/div/ul/li[3]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle6="All - Calls - Activities";
         String actualTitle6=driver.getTitle();
@@ -213,9 +240,11 @@ public class MenuOptionsTest extends TestBase {
 //    name	Calendar	Events
 
         actions.moveToElement(driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[5]/a/span"))).perform();
-        SeleniumUtils.waitPlease(5);
+        //SeleniumUtils.waitPlease(5);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id='main-menu']/ul/li[5]/div/div/ul/li[4]/a/span")));
+
         driver.findElement(By.xpath("//*[@id='main-menu']/ul/li[5]/div/div/ul/li[4]/a/span")).click();
-        SeleniumUtils.waitPlease(5);
+        SeleniumUtils.waitPlease(3);
 
         String expectedTitle7="All - Calendar Events - Activities";
         String actualTitle7=driver.getTitle();

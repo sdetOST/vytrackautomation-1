@@ -16,12 +16,12 @@ public class LoginTest extends TestBase {
 //        1. Login	to	Vytrack	as	a	store	manager
 
         driver.get("http://qa2.vytrack.com/user/login");
-        SeleniumUtils.waitPlease(2);
+        //SeleniumUtils.waitPlease(2);
 
         driver.findElement(By.id("prependedInput")).sendKeys("storemanager98");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.id("_submit")).click();
-        SeleniumUtils.waitPlease(10);
+        SeleniumUtils.waitPlease(3);
 //        2. Verify	name	of	the	store	manager is	displayed	on	top	right
         String nameExpected="Crawford Graham";
         String nameActual=driver.findElement(By.xpath("//a[@class='dropdown-toggle']")).getText();
@@ -35,14 +35,25 @@ public class LoginTest extends TestBase {
 
 //        4. Log	out
 
-        WebDriverWait wait=new WebDriverWait(driver, 20);
-        WebElement dropdown;
+        WebDriverWait wait=new WebDriverWait(driver,10);
 
-        dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
-        dropdown.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
 
-        dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
-        dropdown.click();
+        driver.findElement(By.className("dropdown-toggle")).click();
+
+
+
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
+        driver.findElement(By.xpath("//a[@class='no-hash']")).click();
+
+        //WebDriverWait wait=new WebDriverWait(driver, 10);
+        //WebElement dropdown;
+
+        //dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
+        //dropdown.click();
+
+        //dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
+        //dropdown.click();
 
 
 
@@ -65,18 +76,28 @@ public class LoginTest extends TestBase {
 
 //        8. Log	out
 
-        dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
-        dropdown.click();
+        wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
 
-        dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
-        dropdown.click();
+        driver.findElement(By.className("dropdown-toggle")).click();
+
+
+        //WebDriverWait wait=new WebDriverWait(driver,10);
+        wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
+        driver.findElement(By.xpath("//a[@class='no-hash']")).click();
+
+
+        //dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.className("dropdown-toggle")));
+        //dropdown.click();
+
+        //dropdown = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@class='no-hash']")));
+        //dropdown.click();
 
 
 //        9. Login	to	Vytrack	as	a	driver
         driver.findElement(By.id("prependedInput")).sendKeys("user165");
         driver.findElement(By.id("prependedInput2")).sendKeys("UserUser123");
         driver.findElement(By.id("_submit")).click();
-        SeleniumUtils.waitPlease(3);
+        //SeleniumUtils.waitPlease(3);
 
 //        10. Verify	Dashboad/Quick	Launchpad page	is	open
 
@@ -99,7 +120,7 @@ public class LoginTest extends TestBase {
 
 //        1. Open	Vytrack	login	page
         driver.get("http://qa2.vytrack.com/user/login");
-        SeleniumUtils.waitPlease(2);
+        //SeleniumUtils.waitPlease(2);
 
 
 //        2. Enter	valid	username	and	invalid	password	information
