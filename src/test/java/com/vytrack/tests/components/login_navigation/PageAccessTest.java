@@ -1,5 +1,6 @@
 package com.vytrack.tests.components.login_navigation;
 
+import com.vytrack.utilities.ApplicationConstants;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.SeleniumUtils;
 import com.vytrack.utilities.TestBase;
@@ -11,83 +12,88 @@ public class PageAccessTest extends TestBase {
 
     @Test
     public void vehicleContractsPageStoreManagerAccess(){
-//        TEST	CASE:	Vehicle	contracts	test	store	manager
 
+        extentLogger=report.createTest("Vehicle Contracts Page Store Manager Access Test");
 
-//        1. Login	to	Vytrack	as	a	store	manager
+        extentLogger.info("Open the Login Page");
+        pages.login().open();
 
-
-        loginPage.open();
-        loginPage.login(ConfigurationReader.getProperty("usernameStoreManager"),
+        extentLogger.info("Login by Store Manager credentials");
+        pages.login().login(ConfigurationReader.getProperty("usernameStoreManager"),
                         ConfigurationReader.getProperty("password"));
 
+        extentLogger.info("Hover over Fleet Drop Down Menu");
+        actions.moveToElement(pages.homePage().fleetDropDownMenu).perform();
 
-//        2. Verify	that	you	can	access	Vehicle	contracts	page
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().vehicleContracts));
+        extentLogger.info("Click on Vehicle Contracts");
+        pages.homePage().vehicleContracts.click();
 
-        actions.moveToElement(homePage.fleetDropDownMenu).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.vehicleContracts));
-
-        homePage.vehicleContracts.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle="All - Vehicle Contract - Entities - System - Car - Entities - System";
-        String actualTitle=driver.getTitle();
-        Assert.assertEquals(actualTitle,expectedTitle);
+        extentLogger.info("Verify if Vehicle Contracts Page Title is correct");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.VEHICLE_CONTRACTS_PAGE_TITLE);
+
+
+        extentLogger.pass("Vehicle Contracts Page Store Manager Access");
 
     }
     @Test
     public void vehicleContractsPageSalesManagerAccess(){
-//        TEST	CASE:	Vehicle	contracts	test	sales	manager
 
+        extentLogger=report.createTest("Vehicle Contracts Page Sales Manager Access Test");
 
-//        1. Login	to	Vytrack	as	a	sales	manager
+        extentLogger.info("Open Login Page");
+        pages.login().open();
 
-        loginPage.open();
-        loginPage.login(ConfigurationReader.getProperty("usernameSalesManager"),
+        extentLogger.info("Login by Sales Manager credentials");
+        pages.login().login(ConfigurationReader.getProperty("usernameSalesManager"),
                 ConfigurationReader.getProperty("password"));
 
+        extentLogger.info("Hover over Fleet Drop Down Menu");
+        actions.moveToElement(pages.homePage().fleetDropDownMenu).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().vehicleContracts));
 
 
-//        2. Verify	that	you	can	access	Vehicle	contracts	page
-
-        actions.moveToElement(homePage.fleetDropDownMenu).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.vehicleContracts));
-
-        homePage.vehicleContracts.click();
+        extentLogger.info("Click on Vehicle Contracts");
+        pages.homePage().vehicleContracts.click();
         SeleniumUtils.waitPlease(3);
 
+        extentLogger.info("Verify if Vehicle Contracts Page Title is correct");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.VEHICLE_CONTRACTS_PAGE_TITLE);
 
-        String expectedTitle="All - Vehicle Contract - Entities - System - Car - Entities - System";
-        String actualTitle=driver.getTitle();
-        Assert.assertEquals(actualTitle,expectedTitle);
+        extentLogger.pass("Vehicle Contracts Page Sales Manager Access");
+
 
     }
     @Test
     public void vehicleContractsPageTruckDriverAccess(){
-//        TEST	CASE:	Vehicle	contracts	test	sales	manager
 
+        extentLogger=report.createTest("Vehicle Contracts Page Truck Driver Access Test");
 
-//        1. Login	to	Vytrack	as	a	truck driver
+        extentLogger.info("Open Login Page");
+        pages.login().open();
 
-        loginPage.open();
-        loginPage.login(ConfigurationReader.getProperty("usernameTruckDriver"),
+        extentLogger.info("Login by Truck Driver credentials");
+        pages.login().login(ConfigurationReader.getProperty("usernameTruckDriver"),
                 ConfigurationReader.getProperty("password"));
 
+        extentLogger.info("Hover over Fleet Drop Down Menu");
+        actions.moveToElement(pages.homePage().fleetDropDownMenuTruckDriver).perform();
 
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().vehicleContracts));
 
-//        2. Verify	that	you	cannot	access	Vehicle	contracts	page
-
-        actions.moveToElement(homePage.fleetDropDownMenuTruckDriver).perform();
-
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.vehicleContracts));
-
-        homePage.vehicleContracts.click();
+        extentLogger.info("Click on Vehicle Contracts");
+        pages.homePage().vehicleContracts.click();
 
         SeleniumUtils.waitPlease(3);
 
-        //3. Message	You do not have permission to perform this action. should	be	displayed
+        extentLogger.info("Verify if warning message displayed and Truck Driver cannot access Vehicle Contracts");
+        Assert.assertTrue(pages.homePage().warningMessage.isDisplayed());
 
-        Assert.assertTrue(homePage.warningMessage.isDisplayed());
+        extentLogger.pass("Vehicle Contracts Page Truck Driver Access");
+
+
     }
 
 

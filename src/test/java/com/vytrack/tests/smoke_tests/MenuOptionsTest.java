@@ -1,5 +1,6 @@
 package com.vytrack.tests.smoke_tests;
 
+import com.vytrack.utilities.ApplicationConstants;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.SeleniumUtils;
 import com.vytrack.utilities.TestBase;
@@ -11,236 +12,221 @@ public class MenuOptionsTest extends TestBase {
 
     @Test
     public void menuOptionsDriverTest(){
-//        TEST	CASE:	Menu	options,	driver
 
-//        1. Login	to	Vytrack	as	a	driver
+        extentLogger=report.createTest("Menu Options Truck Driver Test");
 
-        loginPage.open();
-        loginPage.login(ConfigurationReader.getProperty("usernameTruckDriver"),
+        extentLogger.info("Open the Login Page");
+        pages.login().open();
+
+        extentLogger.info("Login by truck Driver credentials");
+        pages.login().login(ConfigurationReader.getProperty("usernameTruckDriver"),
                         ConfigurationReader.getProperty("password"));
 
-//        2. Navigate	to	Fleet	à Vehicles,	verify	page	title	Car	- Entities	- System	- Car	- Entities	–
-//        System,	page	name	Cars
+        extentLogger.info("Hover over Fleet Drop Down Menu");
 
+        actions.moveToElement(pages.homePage().fleetDropDownMenuTruckDriver).perform();
 
-        actions.moveToElement(homePage.fleetDropDownMenuTruckDriver).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().fleetDropDownMenuVehiclesSelection));
+        extentLogger.info("Click on Vehicles");
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.fleetDropDownMenuVehiclesSelection));
-
-        homePage.fleetDropDownMenuVehiclesSelection.click();
+        pages.homePage().fleetDropDownMenuVehiclesSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle="Car - Entities - System - Car - Entities - System";
-        String actualTitle=driver.getTitle();
-        Assert.assertEquals(actualTitle,expectedTitle);
+        extentLogger.info("Verify Vehicles Page Title");
 
-        String expectedPageName="Cars";
-        String actualPageName=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName,expectedPageName);
+        Assert.assertEquals(driver.getTitle(), ApplicationConstants.VEHICLES_PAGE_TITLE);
+        extentLogger.info("Verify Vehicles Page Name");
 
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.VEHICLES_PAGE_NAME);
 
 
-//        3. Navigate	to	Customers	à Accounts,	verify	page	title	Accounts	- Customers,	verify	page
-//        name	Accounts
 
-        actions.moveToElement(homePage.customersDropDownMenu).perform();
+        extentLogger.info("Hover over Customers Drop Down Menu");
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.customersDropDownMenuAccountsSelection));
+        actions.moveToElement(pages.homePage().customersDropDownMenu).perform();
 
-        homePage.customersDropDownMenuAccountsSelection.click();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().customersDropDownMenuAccountsSelection));
+        extentLogger.info("Click on Accounts");
+
+        pages.homePage().customersDropDownMenuAccountsSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle2="Accounts - Customers";
-        String actualTitle2=driver.getTitle();
-        Assert.assertEquals(actualTitle2,expectedTitle2);
+        extentLogger.info("Verify Accounts Page Title");
 
-        String expectedPageName2="Accounts";
-        String actualPageName2=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName2,expectedPageName2);
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.CUSTOMERS_ACCOUNTS_PAGE_TITLE);
+        extentLogger.info("Verify Accounts Page Name");
 
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.CUSTOMERS_ACCOUNTS_PAGE_NAME);
 
 
-//        4. Navigate	to	Customers	à Contacts,	verify	page	title	Accounts	- Customers,	verify	page
-//        name	Contacts
 
-        actions.moveToElement(homePage.customersDropDownMenu).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.customersDropDownMenuContactsSelection));
 
-        homePage.customersDropDownMenuContactsSelection.click();
+        extentLogger.info("Hover over Customers Drop Down Menu");
+
+        actions.moveToElement(pages.homePage().customersDropDownMenu).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().customersDropDownMenuContactsSelection));
+        extentLogger.info("Click on Contacts");
+
+        pages.homePage().customersDropDownMenuContactsSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle3="Contacts - Customers";
-        String actualTitle3=driver.getTitle();
-        Assert.assertEquals(actualTitle3,expectedTitle3);
+        extentLogger.info("Verify Contacts Page Title");
 
-        String expectedPageName3="Contacts";
-        String actualPageName3=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName3,expectedPageName3);
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.CUSTOMERS_CONTACTS_PAGE_TITLE);
+        extentLogger.info("Verify Contacts Page Name");
+
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.CUSTOMERS_CONTACTS_PAGE_NAME);
 
 
-//        5. Navigate	to	Activities	à Calendar	Events,	verify	page	title	Calendar	Events	- Activities,	page
-//        name	Calendar	Events
+        extentLogger.info("Hover over Activities Drop Down Menu");
 
-        actions.moveToElement(homePage.activitiesDropDownMenu).perform();
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.activitiesDropDownMenuCalendarEventsSelection));
+        actions.moveToElement(pages.homePage().activitiesDropDownMenu).perform();
 
-        homePage.activitiesDropDownMenuCalendarEventsSelection.click();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().activitiesDropDownMenuCalendarEventsSelection));
+        extentLogger.info("Click on Calendar Events");
+
+        pages.homePage().activitiesDropDownMenuCalendarEventsSelection.click();
         SeleniumUtils.waitPlease(3);
+        extentLogger.info("Verify Calendar Events Page Title");
 
-        String expectedTitle4="Calendar Events - Activities";
-        String actualTitle4=driver.getTitle();
-        Assert.assertEquals(actualTitle4,expectedTitle4);
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.ACTIVITIES_CALENDAR_EVENT_PAGE_TITLE);
+        extentLogger.info("Verify Calendar Events Page Name");
 
-        String expectedPageName4="Calendar Events";
-        String actualPageName4=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName4,expectedPageName4);
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.ACTIVITIES_CALENDAR_EVENT_PAGE_NAME);
+
+
+        extentLogger.pass("Menu Options Truck Driver");
+
     }
 
-//
-//    TEST	CASE:	Menu	options,	store	manager
     @Test
     public void menuOptionsStoreManagerTest() {
 
+        extentLogger=report.createTest("Menu Options Store Manager Test");
 
-//1. Login	to	Vytrack	as	a	store	manager
+        extentLogger.info("Open Login Page");
+        pages.login().open();
 
-        loginPage.open();
-        loginPage.login(ConfigurationReader.getProperty("usernameStoreManager"),
+        extentLogger.info("Login by Store Manager credentials");
+        pages.login().login(ConfigurationReader.getProperty("usernameStoreManager"),
                 ConfigurationReader.getProperty("password"));
+        extentLogger.info("Hover over Dashboards Drop Down Menu");
 
-//2. Navigate	to	Dashboards	à Dashboard,	verify	page	title	Dashboard	- Dashboards,	verify
-//    page	name	Dashboard
-        actions.moveToElement(homePage.dashboardsDropDownMenu).perform();
+        actions.moveToElement(pages.homePage().dashboardsDropDownMenu).perform();
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.dashboardsDropDownMenuDashboardSelection));
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().dashboardsDropDownMenuDashboardSelection));
 
-        homePage.dashboardsDropDownMenuDashboardSelection.click();
+        extentLogger.info("Click on Dashboard");
+        pages.homePage().dashboardsDropDownMenuDashboardSelection.click();
+
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle5="Dashboard - Dashboards";
-        String actualTitle5=driver.getTitle();
-        Assert.assertEquals(actualTitle5,expectedTitle5);
+        extentLogger.info("Verify Dashboard Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.DASHBOARDS_DASHBOARD_PAGE_TITLE);
 
-        String expectedPageName5="Dashboard";
-        String actualPageName5=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName5,expectedPageName5);
+        extentLogger.info("Verify Dashboard Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.DASHBOARDS_DASHBOARD_PAGE_NAME);
 
 
+        extentLogger.info("Hover over Fleet Drop Down Menu");
+        actions.moveToElement(pages.homePage().fleetDropDownMenu).perform();
+
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().fleetDropDownMenuVehiclesSelection));
+
+        extentLogger.info("Click on Vehicles");
+        pages.homePage().fleetDropDownMenuVehiclesSelection.click();
+
+        SeleniumUtils.waitPlease(7);
+        extentLogger.info("Verify Vehicles Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.VEHICLES_PAGE_TITLE);
+
+        extentLogger.info("Verify Vehicles Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.VEHICLES_PAGE_NAME);
 
 
-//3. Navigate	to	Fleet	à Vehicles,	verify	page	title	Car	- Entities	- System	- Car	- Entities	–
-//    System,	page	name	Cars
-        actions.moveToElement(homePage.fleetDropDownMenu).perform();
+        extentLogger.info("Hover over Customers Drop Down Menu");
+        actions.moveToElement(pages.homePage().customersDropDownMenu).perform();
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.fleetDropDownMenuVehiclesSelection));
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().customersDropDownMenuAccountsSelection));
 
-        homePage.fleetDropDownMenuVehiclesSelection.click();
+        extentLogger.info("Click on Accounts");
+        pages.homePage().customersDropDownMenuAccountsSelection.click();
+
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle="All - Car - Entities - System - Car - Entities - System";
-        String actualTitle=driver.getTitle();
-        Assert.assertEquals(actualTitle,expectedTitle);
+        extentLogger.info("Verify Accounts Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.CUSTOMERS_ACCOUNTS_PAGE_TITLE);
 
-        String expectedPageName="All Cars";
-        String actualPageName=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName,expectedPageName);
+        extentLogger.info("Verify Accounts Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.CUSTOMERS_ACCOUNTS_PAGE_NAME);
 
+        extentLogger.info("Hover over Customers Drop Down Menu");
+        actions.moveToElement(pages.homePage().customersDropDownMenu).perform();
 
-//4. Navigate	to	Customers	à Accounts,	verify	page	title	Accounts	- Customers,	verify	page
-//    name	Accounts
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().customersDropDownMenuContactsSelection));
 
-        actions.moveToElement(homePage.customersDropDownMenu).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.customersDropDownMenuAccountsSelection));
+        extentLogger.info("Click on Contacts");
+        pages.homePage().customersDropDownMenuContactsSelection.click();
 
-        homePage.customersDropDownMenuAccountsSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle2="All - Accounts - Customers";
-        String actualTitle2=driver.getTitle();
-        Assert.assertEquals(actualTitle2,expectedTitle2);
+        extentLogger.info("Verify Contacts Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.CUSTOMERS_CONTACTS_PAGE_TITLE);
 
-        String expectedPageName2="All Accounts";
-        String actualPageName2=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName2,expectedPageName2);
+        extentLogger.info("Verify Contacts Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.CUSTOMERS_CONTACTS_PAGE_NAME);
 
-//5. Navigate	to	Customers	à Contacts,	verify	page	title	Accounts	- Customers,	verify	page
-//    name	Contacts
+        extentLogger.info("Hover over Sales Drop Down Menu");
+        actions.moveToElement(pages.homePage().salesDropDownMenu).perform();
 
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().salesDropDownMenuOpportunities));
 
-        actions.moveToElement(homePage.customersDropDownMenu).perform();
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.customersDropDownMenuContactsSelection));
+        extentLogger.info("Click on Opportunities");
+        pages.homePage().salesDropDownMenuOpportunities.click();
 
-        homePage.customersDropDownMenuContactsSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle3="All - Contacts - Customers";
-        String actualTitle3=driver.getTitle();
-        Assert.assertEquals(actualTitle3,expectedTitle3);
+        extentLogger.info("Verify Opportunities Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.SALES_OPPORTUNITIES_PAGE_TITLE);
 
-        String expectedPageName3="All Contacts";
-        String actualPageName3=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName3,expectedPageName3);
+        extentLogger.info("Verify Opportunities Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(),ApplicationConstants.SALES_OPPORTUNITIES_PAGE_NAME);
 
 
-//6. Navigate	to	Sales	à Opportunities,	verify	page	title	Open	Opportunities	- Opportunities	-
-//    Sales,	verify	page	name	Open	Opportunities
+        extentLogger.info("Hover over Activities Drop Down Menu");
+        actions.moveToElement(pages.homePage().activitiesDropDownMenu).perform();
 
-        actions.moveToElement(homePage.salesDropDownMenu).perform();
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().activitiesDropDownMenuCallsSelection));
 
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.salesDropDownMenuOpportunities));
+        extentLogger.info("Click on Calls");
+        pages.homePage().activitiesDropDownMenuCallsSelection.click();
 
-        homePage.salesDropDownMenuOpportunities.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle4="Open Opportunities - Opportunities - Sales";
-        String actualTitle4=driver.getTitle();
-        Assert.assertEquals(actualTitle4,expectedTitle4);
+        extentLogger.info("Verify Opportunities Calls Page Title");
+        Assert.assertEquals(driver.getTitle(),ApplicationConstants.ACTIVITIES_CALLS_PAGE_TITLE);
 
-        String expectedPageName4="Open Opportunities";
-        String actualPageName4=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName4,expectedPageName4);
+        extentLogger.info("Verify Opportunities Calls Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(), ApplicationConstants.ACTIVITIES_CALLS_PAGE_NAME);
 
+        extentLogger.info("Hover over Activities Drop Down Menu");
+        actions.moveToElement(pages.homePage().activitiesDropDownMenu).perform();
 
+        wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().activitiesDropDownMenuCalendarEventsSelection));
 
-//7. Navigate	to	Activities	à Calls	verify	page	title	Calendar	Events	- Activities,	page	name	All
-//            Calls
+        extentLogger.info("Click on Calendar Events");
+        pages.homePage().activitiesDropDownMenuCalendarEventsSelection.click();
 
-        actions.moveToElement(homePage.activitiesDropDownMenu).perform();
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.activitiesDropDownMenuCallsSelection));
-
-        homePage.activitiesDropDownMenuCallsSelection.click();
         SeleniumUtils.waitPlease(3);
 
-        String expectedTitle6="All - Calls - Activities";
-        String actualTitle6=driver.getTitle();
-        Assert.assertEquals(actualTitle6,expectedTitle6);
+        extentLogger.info("Verify Calendar Events Page Title");
+        Assert.assertEquals(driver.getTitle(), ApplicationConstants.ACTIVITIES_CALENDAR_EVENT_PAGE_TITLE);
 
-        String expectedPageName6="All Calls";
-        String actualPageName6=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName6,expectedPageName6);
+        extentLogger.info("Verify Calendar Events Page Name");
+        Assert.assertEquals(pages.homePage().pageName.getText(), ApplicationConstants.ACTIVITIES_CALENDAR_EVENT_PAGE_NAME);
 
-//8. Navigate	to	Activities	à Calendar	Events,	verify	page	title	Calendar	Events	- Activities,	page
-//    name	Calendar	Events
-
-        actions.moveToElement(homePage.activitiesDropDownMenu).perform();
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(homePage.activitiesDropDownMenuCalendarEventsSelection));
-
-        homePage.activitiesDropDownMenuCalendarEventsSelection.click();
-        SeleniumUtils.waitPlease(3);
-
-        String expectedTitle7="All - Calendar Events - Activities";
-        String actualTitle7=driver.getTitle();
-        Assert.assertEquals(actualTitle7,expectedTitle7);
-
-        String expectedPageName7="All Calendar Events";
-        String actualPageName7=homePage.pageName.getText();
-        Assert.assertEquals(actualPageName7,expectedPageName7);
-
+        extentLogger.pass("Menu Options Store Manager");
 
     }
 }

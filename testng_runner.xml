@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="VyTrack" verbose="1" >
+    <test name="VyTrack Automated Tests"   >
+            <packages>
+                <package name="com.vytrack.tests.components.login_navigation"></package>
+
+                <package name="com.vytrack.tests.smoke_tests"></package>
+            </packages>
+    </test>
+</suite>
