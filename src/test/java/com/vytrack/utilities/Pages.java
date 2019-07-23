@@ -5,7 +5,7 @@ import com.vytrack.pages.*;
 public class Pages {
     private LoginPage loginPage;
     private HomePage homePage;
-
+    private ActivitiesPage activitiesPage;
 
 
     public LoginPage login(){
@@ -25,6 +25,16 @@ public class Pages {
         }
 
         return homePage;
+
+    }
+
+    public ActivitiesPage activitiesPage(){
+        if(activitiesPage==null){
+
+            activitiesPage=new ActivitiesPage();
+        }
+
+        return activitiesPage;
 
     }
 

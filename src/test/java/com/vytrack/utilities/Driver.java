@@ -18,10 +18,10 @@ public class Driver {
     private static WebDriver driver;
 
 
-    public static WebDriver getDriver() {
+    public static WebDriver getDriver(String browser) {
 
         if (driver == null) {
-            String browser = ConfigurationReader.getProperty("browser");
+            browser =browser==null? ConfigurationReader.getProperty("browser"):browser;
 
             switch (browser) {
                 case "chrome":
@@ -70,6 +70,20 @@ public class Driver {
 
         return driver;
     }
+
+    public static WebDriver getDriver( ) {
+        return  getDriver(null);
+
+    }
+
+
+
+
+
+
+
+
+
 
     public static void closeDriver() {
         if (driver != null) {

@@ -40,16 +40,14 @@ public abstract class TestBase {  //abstract because we dont want instance from 
 
     }
 
-    @BeforeClass
-    public void setUpClass(){
-        WebDriverManager.chromedriver().setup();
+
+    @Parameters("browser")
+    @BeforeMethod (alwaysRun = true)
+    public void setUpMethod(@Optional String browser){
+
+        driver=Driver.getDriver(browser);
 
 
-    }
-
-    @BeforeMethod
-    public void setUpMethod(){
-        driver=Driver.getDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         softAssert=new SoftAssert();
         actions=new Actions(driver);
@@ -58,7 +56,7 @@ public abstract class TestBase {  //abstract because we dont want instance from 
 
     }
 
-    @AfterMethod
+    @AfterMethod (alwaysRun = true)
     public void tearDownMethod(ITestResult result) throws IOException {
 
         if(result.getStatus()==ITestResult.FAILURE){
@@ -67,8 +65,8 @@ public abstract class TestBase {  //abstract because we dont want instance from 
             extentLogger.addScreenCaptureFromPath(screenshotLocation);
             extentLogger.fail(result.getThrowable());
         }
-       else if (result.getStatus()==ITestResult.SKIP){
-           extentLogger.skip("Test Case Skipped: "+result.getName());
+        else if (result.getStatus()==ITestResult.SKIP){
+            extentLogger.skip("Test Case Skipped: "+result.getName());
 
         }
 
@@ -79,7 +77,7 @@ public abstract class TestBase {  //abstract because we dont want instance from 
     }
 
 
-    @BeforeTest
+    @BeforeTest (alwaysRun = true)
     public void setUpTest(){
         report =new ExtentReports();
 
@@ -92,14 +90,18 @@ public abstract class TestBase {  //abstract because we dont want instance from 
         report.setSystemInfo("QA Engineer","Mehmet Durkan");
 
 
-        htmlReporter.config().setDocumentTitle("VyTrack Reports");
+        htmlReporter.config().setDocumentTitle("Brite ERP Reports");
 
 
     }
-    @AfterTest
+
+
+
+    @AfterTest (alwaysRun = true)
     public void endReport() {
         report.flush();
     }
 
 
 }
+

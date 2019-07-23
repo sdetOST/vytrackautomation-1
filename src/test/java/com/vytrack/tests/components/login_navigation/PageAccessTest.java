@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 
 public class PageAccessTest extends TestBase {
 
-    @Test
+    @Test (groups = "regression")
     public void vehicleContractsPageStoreManagerAccess(){
 
         extentLogger=report.createTest("Vehicle Contracts Page Store Manager Access Test");
@@ -22,7 +22,10 @@ public class PageAccessTest extends TestBase {
         pages.login().login(ConfigurationReader.getProperty("usernameStoreManager"),
                         ConfigurationReader.getProperty("password"));
 
+
+
         extentLogger.info("Hover over Fleet Drop Down Menu");
+
         actions.moveToElement(pages.homePage().fleetDropDownMenu).perform();
 
         wait.until(ExpectedConditions.elementToBeClickable(pages.homePage().vehicleContracts));

@@ -1,0 +1,23 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="VyTrack Regression Tests">
+    <test name="Regression">
+        <groups>
+            <run>
+                <include name="regression"/>
+
+            </run>
+
+        </groups>
+
+
+        <classes>
+
+            <class name="com.vytrack.tests.components.login_navigation.PageAccessTest"/>
+        </classes>
+
+    </test>
+
+
+
+
+</suite>

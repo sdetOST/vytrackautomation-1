@@ -2,13 +2,18 @@ package com.vytrack.pages;
 
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
+import com.vytrack.utilities.SeleniumUtils;
+import net.bytebuddy.pool.TypePool;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class HomePage {
-
+    WebDriverWait wait=new WebDriverWait(Driver.getDriver(),10);
     public HomePage(){
     PageFactory.initElements(Driver.getDriver(),this);
 
@@ -87,6 +92,14 @@ public class HomePage {
     @FindBy(xpath = "//div[contains(text(),'You do not have permission to perform this action.')]")
     public WebElement warningMessage;
 
+    public void navigateToModule(WebDriver driver, String tab, String module){
 
+       String tabLocator="//span[contains(text(),'"+tab+"') and contains(@class,'title title-level-1')]";
+       String moduleLocator="//span[contains(text(),'"+module+"') and contains(@class,'title title-level-2')]";
+       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(tabLocator))));
+       driver.findElement(By.xpath(tabLocator)).click();
+       wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath(moduleLocator))));
+       driver.findElement(By.xpath(moduleLocator)).click();
+        }
 
 }

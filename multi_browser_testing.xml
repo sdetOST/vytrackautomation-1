@@ -1,0 +1,28 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="VyTrack Automation Tests" verbose="2">
+
+    <test name="Smoke Tests using Firefox">
+        <parameter name="browser" value="firefox"></parameter>
+        <packages>
+            <package name="com.vytrack.tests.smoke_tests"/>
+
+        </packages>
+
+
+    </test>
+
+    <test name="Smoke Tests using Chrome">
+        <parameter name="browser" value="chrome"></parameter>
+        <packages>
+            <package name="com.vytrack.tests.smoke_tests"/>
+
+        </packages>
+
+
+    </test>
+
+
+
+
+
+</suite>
