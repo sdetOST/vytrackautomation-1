@@ -1,5 +1,6 @@
 package com.vytrack.pages;
 
+import com.vytrack.utilities.BrowserUtils;
 import com.vytrack.utilities.ConfigurationReader;
 import com.vytrack.utilities.Driver;
 import org.openqa.selenium.WebElement;
@@ -31,6 +32,8 @@ public class LoginPage {
         this.username.sendKeys(username);
         this.password.sendKeys(password);
         loginButton.click();
+        BrowserUtils.waitUntilLoaderScreenDisappear();
+
     }
 
     public void open(){

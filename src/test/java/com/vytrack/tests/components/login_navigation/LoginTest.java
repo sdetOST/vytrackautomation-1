@@ -1,9 +1,6 @@
 package com.vytrack.tests.components.login_navigation;
 
-import com.vytrack.utilities.ApplicationConstants;
-import com.vytrack.utilities.ConfigurationReader;
-import com.vytrack.utilities.SeleniumUtils;
-import com.vytrack.utilities.TestBase;
+import com.vytrack.utilities.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -23,8 +20,9 @@ public class LoginTest extends TestBase {
         pages.login().login(ConfigurationReader.getProperty("usernameStoreManager"),
                         ConfigurationReader.getProperty("password")             );
 
-        SeleniumUtils.waitPlease(3);
+        //SeleniumUtils.waitPlease(3);
 
+        //BrowserUtils.waitUntilLoaderScreenDisappear();
         extentLogger.info("Verify name of the store manager is displayed on top right");
         Assert.assertEquals(pages.homePage().nameOfTheEmployee.getText(),ApplicationConstants.STORE_MANAGER_NAME);
 
